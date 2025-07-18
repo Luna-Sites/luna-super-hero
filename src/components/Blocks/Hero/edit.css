@@ -1,0 +1,57 @@
+.hero-block .block-add-button,
+.hero-block .drag.handle.wrapper,
+.hero-block .block-editor-slate:first-of-type .delete-button {
+  display: none !important;
+}
+
+/* Hero carousel edit navigation */
+.hero-edit-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.hero-edit-nav-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.hero-edit-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-edit-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.hero-edit-slide-counter {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.hero-carousel-edit-wrapper {
+  position: relative;
+}
+
+.hero-slide-edit {
+  position: relative;
+}

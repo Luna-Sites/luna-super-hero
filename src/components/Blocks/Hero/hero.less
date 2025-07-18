@@ -1,0 +1,728 @@
+@type: 'extra';
+@element: 'hero';
+
+/*-------------------------------------
+  Imports
+--------------------------------------*/
+@import (multiple) './hero.variables';
+@import (multiple) '@plone/volto/theme/themes/default/globals/site.variables';
+
+& {
+  @import (less) 'remixicon/fonts/remixicon.css';
+}
+
+/*-------------------------------------
+  Hero Block - Base Styles
+--------------------------------------*/
+.block.hero .ui.delete-button {
+  color: @heroDeleteButtonColor !important;
+}
+
+.eea.hero-block {
+  position: @heroBlockPosition;
+}
+
+/*-------------------------------------
+  Override page-document centering for full-width heroes
+--------------------------------------*/
+#page-document
+  .blocks-group-wrapper
+  > .eea.hero-block:has(.hero-block-image-wrapper.full-width) {
+  max-width: none !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Fallback for browsers that don't support :has() */
+#page-document
+  .blocks-group-wrapper
+  > .eea.hero-block
+  .hero-block-image-wrapper.full-width {
+  /* This will be handled by the existing full-width styles */
+}
+
+/* Alternative approach using a specific class */
+#page-document .blocks-group-wrapper > .eea.hero-block.has-full-width {
+  max-width: none !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.eea.hero-block.spaced {
+  margin: @heroBlockSpacedMargin;
+}
+
+/*-------------------------------------
+  Hero Block - Inner Structure
+--------------------------------------*/
+.hero-block-inner-wrapper {
+  position: relative;
+  height: 100%;
+  padding-block: @heroBlockWrapperPadding;
+}
+
+.hero-block-body {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: @mobileHeroBlockBodyGap;
+}
+
+.hero-block-image {
+  position: relative;
+  height: 100%;
+  .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .volume-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1;
+    background: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+
+    .icon {
+      margin: 0 !important;
+      font-size: 1.5em;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    }
+  }
+}
+
+.hero-block-image-wrapper {
+  position: absolute !important;
+  width: 100%;
+  height: 100% !important;
+  min-height: @heroBlockImageWrapperMinHeight;
+}
+
+/*-------------------------------------
+  Hero Block - Homepage and Layout Adjustments
+--------------------------------------*/
+.hero-block[class*='color-bg']:not(.full-width) {
+  padding: @heroBlockHomePagePadding;
+}
+
+.homepage #page-document > .eea.hero-block:first-of-type .hero-block-body {
+  margin: @heroBlockHomePageBodyMargin;
+}
+
+#page-document > .styled-hero {
+  margin-top: 0;
+}
+
+/*-------------------------------------
+  Full-height Variant
+--------------------------------------*/
+.eea.hero-block.full-height,
+.eea.hero-block.full-height .hero-block-image-wrapper,
+.eea.hero-block.full-height .hero-block-inner-wrapper {
+  min-height: @mobileHeroBlockMinHeight;
+}
+
+/*-------------------------------------
+  Media Queries - Mobile
+--------------------------------------*/
+@media only screen and (max-width: @tabletBreakpoint) {
+  /* Ensure full-width works properly on mobile */
+  .hero-block-image-wrapper.full-width {
+    --sidebar-width: 0px !important;
+    --scrollbar-width: 0px !important;
+    --toolbar-width: 0px !important;
+
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+  }
+
+  /* Ensure parent containers don't constrain full-width on mobile */
+  #page-document .blocks-group-wrapper > .eea.hero-block.has-full-width,
+  #page-document
+    .blocks-group-wrapper
+    > .eea.hero-block:has(.hero-block-image-wrapper.full-width) {
+    position: relative !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    width: 100vw !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+
+  /* Override any container padding that might interfere */
+  body.has-toolbar
+    #page-document
+    .blocks-group-wrapper
+    > .eea.hero-block.has-full-width,
+  body.has-toolbar
+    #page-document
+    .blocks-group-wrapper
+    > .eea.hero-block:has(.hero-block-image-wrapper.full-width) {
+    --toolbar-width: 0px !important;
+  }
+
+  /* Carousel specific mobile adjustments */
+  .hero-carousel-edit-wrapper.has-full-width,
+  .block.hero-slider.has-full-width {
+    position: relative !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    width: 100vw !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+
+  /* Ensure carousel slides maintain full width */
+  .hero-slider-slide .hero-block-image-wrapper.full-width {
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+/*-------------------------------------
+  Media Queries - Tablet
+--------------------------------------*/
+@media only screen and (min-width: @tabletBreakpoint) {
+  .eea.hero-block.full-height,
+  .eea.hero-block.full-height .hero-block-image-wrapper,
+  .eea.hero-block.full-height .hero-block-inner-wrapper {
+    min-height: @tabletHeroBlockMinHeight;
+  }
+
+  .hero-block-inner-wrapper {
+    padding-block: @tableHeroBlockWrapperPadding;
+  }
+
+  .hero-block-body {
+    gap: @tabletHeroBlockBodyGap;
+  }
+}
+
+/*-------------------------------------
+  Media Queries - Desktop
+--------------------------------------*/
+@media only screen and (min-width: @computerBreakpoint) {
+  .eea.hero-block.full-height,
+  .eea.hero-block.full-height .hero-block-image-wrapper,
+  .eea.hero-block.full-height .hero-block-inner-wrapper {
+    min-height: @desktopHeroBlockMinHeight;
+  }
+
+  .hero-block-inner-wrapper {
+    padding-block: @desktopHeroBlockWrapperPadding;
+  }
+
+  .hero-block-body {
+    gap: @desktopHeroBlockBodyGap;
+  }
+
+  .hero-block-body .eea.copyright {
+    bottom: @desktopCopyrightBottom;
+  }
+}
+
+/*-------------------------------------
+  Print Styles
+--------------------------------------*/
+@media print {
+  .eea.hero-block.full-height,
+  .eea.hero-block.full-height .hero-block-image-wrapper,
+  .eea.hero-block.full-height .hero-block-inner-wrapper {
+    min-height: unset;
+  }
+
+  .hero-block-inner-wrapper {
+    padding-top: @heroBlockPrintPadding;
+    padding-bottom: @heroBlockPrintPadding;
+  }
+
+  .hero-block-image-wrapper {
+    right: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    padding-right: 0% !important;
+    padding-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    break-inside: avoid-page;
+  }
+
+  .hero-block {
+    break-inside: avoid-page;
+  }
+
+  .hero-block-body .eea.copyright {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+/*-------------------------------------
+  Copyright Block
+--------------------------------------*/
+.hero-block-body .eea.copyright {
+  position: absolute;
+  bottom: @mobileCopyrightBottom;
+}
+
+.eea.copyright {
+  width: @copyrightWidth;
+
+  .wrapper {
+    display: flex;
+    align-items: @copyrightAlignItems;
+    justify-content: var(--justify-content, flex-start);
+    color: @copyrightContentColor;
+    font-size: @copyrightContentFontSize;
+    gap: @copyrightContentPaddingRight;
+    line-height: @copyrightLineHeight;
+  }
+
+  &.left .wrapper {
+    --justify-content: flex-start;
+  }
+
+  &.center .wrapper {
+    --justify-content: center;
+  }
+
+  &.right .wrapper {
+    --justify-content: flex-end;
+  }
+
+  .icon {
+    margin: 0; // override default
+  }
+}
+
+/*-------------------------------------
+  Quoted Text
+--------------------------------------*/
+.hero-block-text .quoted > * {
+  display: inline-block;
+}
+
+.quoted-wrapper h2::before,
+.quoted-wrapper h3::before,
+.quoted::before {
+  content: '\EC51';
+  font-family: 'remixicon' !important;
+}
+
+.quoted-wrapper h2::after,
+.quoted-wrapper h3::after,
+.quoted::after {
+  content: '\ec52';
+  font-family: 'remixicon' !important;
+}
+
+/*-------------------------------------
+  Utility Classes
+--------------------------------------*/
+.color-bg-primary {
+  background-color: @primaryColor !important;
+}
+
+.color-bg-secondary {
+  background-color: @brown !important;
+}
+
+// .color-bg-tertiary { background-color: @hoverBackgroundColor !important; }
+
+.color-fg-white {
+  color: #fff;
+}
+
+.dark-overlay-4 {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.4;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+.flex-items-start {
+  align-items: flex-start !important;
+}
+
+.flex-items-end {
+  align-items: flex-end !important;
+}
+
+.flex-items-center {
+  align-items: center !important;
+}
+
+.has--bg--top {
+  background-position: top !important;
+}
+
+.has--bg--center {
+  background-position: center !important;
+}
+
+.has--bg--bottom {
+  background-position: bottom !important;
+}
+
+/*-------------------------------------
+  Full-width Image Wrapper Adjustments
+--------------------------------------*/
+body {
+  --toolbar-width: 0px;
+
+  &.has-toolbar {
+    --toolbar-width: 80px;
+  }
+}
+
+.hero-block-image-wrapper.full-width {
+  --sidebar-width: 0px;
+  --scrollbar-width: 0px;
+
+  @toolbarWidthCSS: var(--toolbar-width, 0px);
+  @sidebarWidthCSS: var(--sidebar-width, 0px);
+  @scrollbarWidthCSS: var(--scrollbar-width, @scrollbarWidth);
+
+  right: 50%;
+  left: 50%;
+
+  width: calc(
+    100vw - @toolbarWidthCSS - @sidebarWidthCSS - @scrollbarWidthCSS
+  ) !important;
+
+  max-width: initial !important;
+
+  margin-right: calc(
+    -50vw + @toolbarWidthCSS / 2 + @sidebarWidthCSS / 2 + @scrollbarWidthCSS / 2
+  ) !important;
+
+  margin-left: calc(
+    -50vw + (@toolbarWidthCSS + @sidebarWidthCSS + @scrollbarWidthCSS) / 2
+  ) !important;
+}
+
+/*-------------------------------------
+  Hero Slider Styles (Embla Carousel like volto-slider-block)
+--------------------------------------*/
+
+// Main slider wrapper (like volto-slider-block)
+.hero-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider-viewport {
+  margin-bottom: 24px;
+}
+
+.hero-slider-container {
+  display: flex;
+}
+
+.hero-slider-slide {
+  min-width: 0;
+  flex: 0 0 100%;
+}
+
+// Navigation button areas - positioned within hero-slider-wrapper only
+.hero-slider-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 10%;
+  width: 80px;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  -webkit-appearance: none;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: opacity 0.3s ease-in;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  &:hover,
+  &:focus {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0;
+    cursor: not-allowed;
+  }
+
+  .icon {
+    margin: 0 !important;
+    font-size: 32px !important;
+    color: #fff !important;
+  }
+
+  i.icon {
+    margin: 0 !important;
+    font-size: 32px !important;
+    color: #fff !important;
+    opacity: 1 !important;
+  }
+
+  svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+  }
+}
+
+.hero-slider-button-prev {
+  left: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.hero-slider-button-next {
+  right: 0;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// Dots as lines on hero image bottom
+.hero-slider-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.hero-slider-dot {
+  width: 40px;
+  height: 6px;
+  margin: 0 6px;
+  border: 1px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  padding: 0;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background-color: #ffffff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.hero-slider-dot--selected {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  transform: scaleX(1.3);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+// Main block styling
+.block.hero-slider {
+  &:not(.inner):not([role='presentation']) {
+    padding-bottom: 4em;
+  }
+
+  // Visibility for slides
+  .hero-slider-slide {
+    visibility: visible; // Always visible, let Embla handle positioning
+  }
+
+  // Ensure slide content is visible
+  .slide-visible {
+    visibility: visible;
+  }
+
+  // Ensure hero maintains full-screen capability
+  .hero-slide-item {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: @tabletBreakpoint) {
+  .hero-slider-button {
+    width: 40px;
+    opacity: 0; // Hidden by default on mobile, same as desktop
+
+    // Show on hover/touch
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  // Show on container hover for mobile devices that support it
+  .hero-slider-wrapper:hover .hero-slider-button,
+  .hero-slider-wrapper:focus-within .hero-slider-button {
+    opacity: 1;
+  }
+
+  .hero-slider-dots {
+    bottom: 20px;
+  }
+
+  .hero-slider-dot {
+    width: 30px;
+    margin-right: 8px;
+  }
+}
+
+/*-------------------------------------
+  Hero Carousel Edit Mode Styles
+--------------------------------------*/
+.hero-carousel-edit {
+  position: relative;
+}
+
+.hero-slide-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  .slide-navigation {
+    display: flex;
+    gap: 5px;
+  }
+
+  .ui.button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .ui.button.active {
+    background: #2185d0;
+    color: white;
+  }
+}
+.hero-block-image-wrapper.full-width {
+  --scrollbar-width: 0px;
+}
+@media only screen and (max-width: @tabletBreakpoint) {
+  .hero-slide-controls {
+    position: static;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .slide-navigation {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .hero-carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+
+    &.hero-carousel-prev {
+      left: 10px;
+    }
+
+    &.hero-carousel-next {
+      right: 10px;
+    }
+  }
+}
