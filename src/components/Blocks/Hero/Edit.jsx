@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import cx from 'classnames';
-import isFunction from 'lodash/isFunction';
-import { Icon } from 'semantic-ui-react';
-import config from '@plone/volto/registry';
-import { BlocksForm } from '@plone/volto/components';
-import EditBlockWrapper from '@plone/volto/components/manage/Blocks/Block/EditBlockWrapper';
-import { v4 as uuid } from 'uuid';
-import 'volto-super-hero/components/Blocks/Hero/edit.css';
+import React, { useState, useEffect, useRef } from "react";
+import cx from "classnames";
+import isFunction from "lodash/isFunction";
+import { Icon } from "semantic-ui-react";
+import config from "@plone/volto/registry";
+import { BlocksForm } from "@plone/volto/components";
+import EditBlockWrapper from "@plone/volto/components/manage/Blocks/Block/EditBlockWrapper";
+import { v4 as uuid } from "uuid";
+import "luna-super-hero/components/Blocks/Hero/edit.css";
 
-import { isEmpty } from 'lodash';
+import { isEmpty } from "lodash";
 import {
   BlockDataForm,
   SidebarPortal,
   UniversalLink,
   BlocksToolbar,
-} from '@plone/volto/components';
-import { BodyClass } from '@plone/volto/helpers';
+} from "@plone/volto/components";
+import { BodyClass } from "@plone/volto/helpers";
 
-import { getFieldURL } from 'volto-super-hero/helpers';
-import { HeroBlockSchema } from './schema';
-import Copyright from './Copyright';
-import Hero from './Hero';
+import { getFieldURL } from "luna-super-hero/helpers";
+import { HeroBlockSchema } from "./schema";
+import Copyright from "./Copyright";
+import Hero from "./Hero";
 
 const Metadata = ({ buttonLabel, buttonLink, inverted, styles, ...props }) => {
   const finalButtonLink = getFieldURL(buttonLink); // Use passed buttonLink
@@ -28,13 +28,13 @@ const Metadata = ({ buttonLabel, buttonLink, inverted, styles, ...props }) => {
 
   return buttonLabel ? (
     <UniversalLink
-      className={cx('ui button', buttonVariant, { inverted })}
-      href={finalButtonLink || ''}
+      className={cx("ui button", buttonVariant, { inverted })}
+      href={finalButtonLink || ""}
     >
       {buttonLabel}
     </UniversalLink>
   ) : (
-    ''
+    ""
   );
 };
 
@@ -60,7 +60,7 @@ export default function Edit(props) {
 
   const { copyright, copyrightIcon, copyrightPosition, isCarousel } = data;
 
-  const copyrightPrefix = config.blocks.blocksConfig.hero.copyrightPrefix || '';
+  const copyrightPrefix = config.blocks.blocksConfig.hero.copyrightPrefix || "";
   const schema = React.useMemo(() => {
     if (isFunction(HeroBlockSchema)) {
       return HeroBlockSchema(props);
@@ -84,9 +84,9 @@ export default function Edit(props) {
         fullHeight: updatedData.fullHeight ?? true,
         inverted: updatedData.inverted ?? true,
         overlay: updatedData.overlay ?? true,
-        copyrightIcon: updatedData.copyrightIcon ?? 'ri-copyright-line',
+        copyrightIcon: updatedData.copyrightIcon ?? "ri-copyright-line",
         styles: {
-          alignContent: updatedData.styles?.alignContent ?? 'center',
+          alignContent: updatedData.styles?.alignContent ?? "center",
           ...updatedData.styles, // Preserve existing styles
         },
       };
@@ -95,7 +95,7 @@ export default function Edit(props) {
       // Migrate `data.text` if it exists (legacy field) to a block-compatible format.
       // This will be used as initial content for the default slate block.
       const legacyTextContent = updatedData.text || [
-        { type: 'h2', children: [{ text: '' }] },
+        { type: "h2", children: [{ text: "" }] },
       ];
       if (updatedData.text !== undefined) {
         delete updatedData.text; // Remove legacy 'text' field after processing
@@ -111,13 +111,13 @@ export default function Edit(props) {
           updatedData.data = {
             blocks: {
               [defaultBlockId]: {
-                '@type': 'slate',
+                "@type": "slate",
                 value: legacyTextContent,
                 plaintext:
                   Array.isArray(legacyTextContent) &&
                   legacyTextContent.length > 0
-                    ? legacyTextContent[0]?.children?.[0]?.text || ''
-                    : '',
+                    ? legacyTextContent[0]?.children?.[0]?.text || ""
+                    : "",
               },
             },
             blocks_layout: { items: [defaultBlockId] },
@@ -139,7 +139,7 @@ export default function Edit(props) {
           const defaultBlockId = uuid();
 
           const newSlide = {
-            '@id': defaultSlideId,
+            "@id": defaultSlideId,
             // Migrate top-level `image` and `styles` to the first slide
             image: updatedData.image,
             styles: updatedData.styles,
@@ -147,13 +147,13 @@ export default function Edit(props) {
               // This 'data' object holds blocks specific to the slide
               blocks: {
                 [defaultBlockId]: {
-                  '@type': 'slate',
+                  "@type": "slate",
                   value: legacyTextContent,
                   plaintext:
                     Array.isArray(legacyTextContent) &&
                     legacyTextContent.length > 0
-                      ? legacyTextContent[0]?.children?.[0]?.text || ''
-                      : '',
+                      ? legacyTextContent[0]?.children?.[0]?.text || ""
+                      : "",
                 },
               },
               blocks_layout: { items: [defaultBlockId] },
@@ -188,11 +188,11 @@ export default function Edit(props) {
                 data: {
                   blocks: {
                     [slideDefaultBlockId]: {
-                      '@type': 'slate',
+                      "@type": "slate",
                       value: [
-                        { type: 'h2', children: [{ text: 'New Slide' }] },
+                        { type: "h2", children: [{ text: "New Slide" }] },
                       ],
-                      plaintext: 'New Slide',
+                      plaintext: "New Slide",
                     },
                   },
                   blocks_layout: { items: [slideDefaultBlockId] },
@@ -244,9 +244,9 @@ export default function Edit(props) {
             data: {
               blocks: {
                 [slideDefaultBlockId]: {
-                  '@type': 'slate',
-                  value: [{ type: 'h2', children: [{ text: 'New Slide' }] }],
-                  plaintext: 'New Slide',
+                  "@type": "slate",
+                  value: [{ type: "h2", children: [{ text: "New Slide" }] }],
+                  plaintext: "New Slide",
                 },
               },
               blocks_layout: { items: [slideDefaultBlockId] },
@@ -320,7 +320,7 @@ export default function Edit(props) {
     const currentSlide = slides[safeSlideIndex] || {};
 
     // Special handling of blocks and blocks_layout
-    if (['blocks', 'blocks_layout'].indexOf(id) > -1) {
+    if (["blocks", "blocks_layout"].indexOf(id) > -1) {
       blocksState.current[id] = value;
       const currentSlideData = currentSlide.data || {};
 
@@ -373,7 +373,7 @@ export default function Edit(props) {
             <div
               onKeyDown={(e) => {
                 // Prevent Enter key from interfering with the editor's behavior.
-                if (e.key === 'Enter') {
+                if (e.key === "Enter") {
                   e.stopPropagation();
                 }
               }}
@@ -385,7 +385,7 @@ export default function Edit(props) {
                 allowedBlocks={null}
                 selected={selected && activeBlock}
                 selectedBlock={selected && activeBlock ? activeBlock : null}
-                title={data.placeholder || 'Add content'}
+                title={data.placeholder || "Add content"}
                 onSelectBlock={onSelectBlock}
                 onChangeFormData={(newFormData) => {
                   // `newFormData` contains the updated `blocks` and `blocks_layout` for the single hero.
@@ -435,7 +435,7 @@ export default function Edit(props) {
               <Copyright.Text>{copyright}</Copyright.Text>
             </Copyright>
           ) : (
-            ''
+            ""
           )}
         </Hero>
       </div>
@@ -450,7 +450,7 @@ export default function Edit(props) {
     const safeSlideIndex = Math.max(0, Math.min(slideIndex, slides.length - 1));
     const currentSlide = slides[safeSlideIndex] || {};
     // Use the slide's unique ID for `@id` or fallback to index.
-    const currentSlideId = currentSlide['@id'] || `slide-${safeSlideIndex}`;
+    const currentSlideId = currentSlide["@id"] || `slide-${safeSlideIndex}`;
     const currentSlideStyles = currentSlide.styles || {};
 
     // Properties to pass to the `Hero` component for rendering the *current* slide.
@@ -485,10 +485,10 @@ export default function Edit(props) {
     return (
       <div
         className={cx(
-          'hero-carousel-edit-wrapper eea hero-block',
-          data.fullHeight ? 'full-height' : '',
-          data.spaced ? 'spaced' : '',
-          data.fullWidth ? 'has-full-width' : '',
+          "hero-carousel-edit-wrapper hero-block",
+          data.fullHeight ? "full-height" : "",
+          data.spaced ? "spaced" : "",
+          data.fullWidth ? "has-full-width" : ""
         )}
       >
         {/* Slide Navigation and Management Buttons */}
@@ -533,15 +533,15 @@ export default function Edit(props) {
               const newSlideId = uuid();
               const newBlockId = uuid();
               const newSlide = {
-                '@id': newSlideId,
+                "@id": newSlideId,
                 data: {
                   blocks: {
                     [newBlockId]: {
-                      '@type': 'slate',
+                      "@type": "slate",
                       value: [
-                        { type: 'h2', children: [{ text: 'New Slide' }] },
+                        { type: "h2", children: [{ text: "New Slide" }] },
                       ],
-                      plaintext: 'New Slide',
+                      plaintext: "New Slide",
                     },
                   },
                   blocks_layout: { items: [newBlockId] },
@@ -567,7 +567,7 @@ export default function Edit(props) {
               className="hero-edit-nav-btn hero-edit-remove-slide"
               onClick={() => {
                 const updatedSlides = slides.filter(
-                  (_, idx) => idx !== safeSlideIndex,
+                  (_, idx) => idx !== safeSlideIndex
                 );
                 onChangeBlock(block, {
                   ...data,
@@ -603,7 +603,7 @@ export default function Edit(props) {
             <Hero.Text {...currentHeroProps.styles}>
               <div
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     e.stopPropagation();
                   }
                 }}
@@ -669,7 +669,7 @@ export default function Edit(props) {
                 <Copyright.Text>{copyright}</Copyright.Text>
               </Copyright>
             ) : (
-              ''
+              ""
             )}
           </Hero>
         </div>
@@ -700,7 +700,7 @@ export default function Edit(props) {
               const updatedSlides = [...(data.slides || [])];
               const safeSlideIndex = Math.max(
                 0,
-                Math.min(slideIndex, updatedSlides.length - 1),
+                Math.min(slideIndex, updatedSlides.length - 1)
               );
               updatedSlides[safeSlideIndex] = {
                 ...(updatedSlides[safeSlideIndex] || {}),
@@ -747,7 +747,7 @@ export default function Edit(props) {
               isCarousel
                 ? Math.min(
                     slideIndex,
-                    Math.max(0, (data.slides || []).length - 1),
+                    Math.max(0, (data.slides || []).length - 1)
                   )
                 : undefined // No specific activeObject for single block
             }

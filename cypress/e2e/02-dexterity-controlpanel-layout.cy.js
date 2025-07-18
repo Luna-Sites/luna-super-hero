@@ -58,7 +58,7 @@ describe('ControlPanel: Dexterity Content-Types Layout', () => {
     cy.get('#field-buttonLabel').click().type('my button');
     cy.get('.inline.field.field-attached-image .ui.input')
       .click()
-      .type('https://eea.github.io/volto-eea-design-system/img/eea_icon.png');
+      .type('https://picsum.photos/800/600');
     cy.get(
       '.inline.field.field-attached-image .ui.buttons .primary.button',
     ).click();
@@ -77,7 +77,7 @@ describe('ControlPanel: Dexterity Content-Types Layout', () => {
     // Check if the button exist
     cy.get('.hero-block-meta .button').contains('my button');
     cy.get('.hero-block-image-wrapper');
-    cy.get('.eea.hero-block.spaced.inverted.full-height');
+    cy.get('.hero-block.spaced.inverted.full-height');
     cy.get('.hero-block-meta.text-left .button').contains('Label');
   });
 });

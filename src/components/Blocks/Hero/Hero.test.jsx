@@ -1,11 +1,11 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-intl-redux';
-import configureStore from 'redux-mock-store';
-import config from '@plone/volto/registry';
-import '@testing-library/jest-dom/extend-expect';
+import React from "react";
+import { render } from "@testing-library/react";
+import { Provider } from "react-intl-redux";
+import configureStore from "redux-mock-store";
+import config from "@plone/volto/registry";
+import "@testing-library/jest-dom/extend-expect";
 
-import Hero from './Hero';
+import Hero from "./Hero";
 
 const { settings } = config;
 
@@ -18,15 +18,15 @@ window.IntersectionObserver = jest.fn((callback) => ({
   unobserve,
 }));
 
-jest.mock('volto-super-hero/hooks', () => ({
+jest.mock("luna-super-hero/hooks", () => ({
   useFirstVisited: jest.fn(() => true),
 }));
 
-describe('Hero block', () => {
-  it('renders a hero component', () => {
+describe("Hero block", () => {
+  it("renders a hero component", () => {
     const store = mockStore({
       intl: {
-        locale: 'en',
+        locale: "en",
         messages: {},
       },
     });
@@ -39,29 +39,29 @@ describe('Hero block', () => {
           fullHeight={true}
           spaced={false}
           inverted={true}
-          styles={{ alignContent: 'center', backgroundColor: 'primary' }}
+          styles={{ alignContent: "center", backgroundColor: "primary" }}
         >
           <Hero.Text
             quoted={false}
-            styles={{ textVariant: 'white', textAlign: 'left' }}
+            styles={{ textVariant: "white", textAlign: "left" }}
           >
             Text test
           </Hero.Text>
-          <Hero.Meta styles={{ buttonAlign: 'left' }}>Test meta</Hero.Meta>
+          <Hero.Meta styles={{ buttonAlign: "left" }}>Test meta</Hero.Meta>
         </Hero>
-      </Provider>,
+      </Provider>
     );
 
-    expect(container.querySelector('.eea.hero-block')).toBeInTheDocument();
-    expect(container.querySelector('.inverted')).toBeInTheDocument();
-    expect(container.querySelector('.full-height')).toBeInTheDocument();
-    expect(container.querySelector('.full-width')).toBeInTheDocument();
+    expect(container.querySelector(".hero-block")).toBeInTheDocument();
+    expect(container.querySelector(".inverted")).toBeInTheDocument();
+    expect(container.querySelector(".full-height")).toBeInTheDocument();
+    expect(container.querySelector(".full-width")).toBeInTheDocument();
   });
 
-  it('renders a hero component', () => {
+  it("renders a hero component", () => {
     const store = mockStore({
       intl: {
-        locale: 'en',
+        locale: "en",
         messages: {},
       },
     });
@@ -74,64 +74,64 @@ describe('Hero block', () => {
           fullHeight={true}
           spaced={false}
           inverted={true}
-          styles={{ alignContent: 'center', backgroundColor: 'primary' }}
+          styles={{ alignContent: "center", backgroundColor: "primary" }}
         >
           <Hero.Text
             quoted={false}
-            styles={{ textVariant: 'white', textAlign: 'left' }}
+            styles={{ textVariant: "white", textAlign: "left" }}
           >
             Text test
           </Hero.Text>
-          <Hero.Meta styles={{ buttonAlign: 'left' }}>Test meta</Hero.Meta>
+          <Hero.Meta styles={{ buttonAlign: "left" }}>Test meta</Hero.Meta>
         </Hero>
-      </Provider>,
+      </Provider>
     );
 
-    expect(container.querySelector('.eea.hero-block')).toBeInTheDocument();
-    expect(container.querySelector('.inverted')).toBeInTheDocument();
-    expect(container.querySelector('.full-height')).toBeInTheDocument();
-    expect(container.querySelector('.full-width')).not.toBeInTheDocument();
+    expect(container.querySelector(".hero-block")).toBeInTheDocument();
+    expect(container.querySelector(".inverted")).toBeInTheDocument();
+    expect(container.querySelector(".full-height")).toBeInTheDocument();
+    expect(container.querySelector(".full-width")).not.toBeInTheDocument();
   });
 
-  it('renders a hero component', () => {
+  it("renders a hero component", () => {
     const store = mockStore({
       intl: {
-        locale: 'en',
+        locale: "en",
         messages: {},
       },
     });
     const { container } = render(
       <Provider store={store}>
         <Hero
-          image={{ '@type': 'URL', url: 'url_url', href: 'href_url' }}
+          image={{ "@type": "URL", url: "url_url", href: "href_url" }}
           overlay={true}
           fullWidth={false}
           fullHeight={true}
           spaced={false}
           inverted={true}
-          styles={{ alignContent: 'center', backgroundColor: 'primary' }}
+          styles={{ alignContent: "center", backgroundColor: "primary" }}
         >
           <Hero.Text
             quoted={false}
-            styles={{ textVariant: 'white', textAlign: 'left' }}
+            styles={{ textVariant: "white", textAlign: "left" }}
           >
             Text test
           </Hero.Text>
-          <Hero.Meta styles={{ buttonAlign: 'left' }}>Test meta</Hero.Meta>
+          <Hero.Meta styles={{ buttonAlign: "left" }}>Test meta</Hero.Meta>
         </Hero>
-      </Provider>,
+      </Provider>
     );
 
-    expect(container.querySelector('.eea.hero-block')).toBeInTheDocument();
-    expect(container.querySelector('.hero-block-image')).toHaveStyle({
-      backgroundImage: 'url(url_url)',
+    expect(container.querySelector(".hero-block")).toBeInTheDocument();
+    expect(container.querySelector(".hero-block-image")).toHaveStyle({
+      backgroundImage: "url(url_url)",
     });
   });
 
-  it('renders a hero component', () => {
+  it("renders a hero component", () => {
     const store = mockStore({
       intl: {
-        locale: 'en',
+        locale: "en",
         messages: {},
       },
     });
@@ -144,29 +144,29 @@ describe('Hero block', () => {
           fullHeight={true}
           spaced={false}
           inverted={true}
-          styles={{ alignContent: 'center', backgroundColor: 'primary' }}
+          styles={{ alignContent: "center", backgroundColor: "primary" }}
         >
           <Hero.Text
             quoted={false}
-            styles={{ textVariant: 'white', textAlign: 'left' }}
+            styles={{ textVariant: "white", textAlign: "left" }}
           >
             Text test
           </Hero.Text>
-          <Hero.Meta styles={{ buttonAlign: 'left' }}>Test meta</Hero.Meta>
+          <Hero.Meta styles={{ buttonAlign: "left" }}>Test meta</Hero.Meta>
         </Hero>
-      </Provider>,
+      </Provider>
     );
 
-    expect(container.querySelector('.eea.hero-block')).toBeInTheDocument();
-    expect(container.querySelector('.hero-block-image')).toHaveStyle({
-      backgroundImage: 'url(/foo/bar/@@images/image/huge)',
+    expect(container.querySelector(".hero-block")).toBeInTheDocument();
+    expect(container.querySelector(".hero-block-image")).toHaveStyle({
+      backgroundImage: "url(/foo/bar/@@images/image/huge)",
     });
   });
 
-  it('renders a hero component', () => {
+  it("renders a hero component", () => {
     const store = mockStore({
       intl: {
-        locale: 'en',
+        locale: "en",
         messages: {},
       },
     });
@@ -184,16 +184,16 @@ describe('Hero block', () => {
           </Hero.Text>
           <Hero.Meta styles={{ buttonAlign: undefined }}>Test meta</Hero.Meta>
         </Hero>
-      </Provider>,
+      </Provider>
     );
 
-    expect(container.querySelector('.quoted-wrapper')).toBeInTheDocument();
+    expect(container.querySelector(".quoted-wrapper")).toBeInTheDocument();
   });
 
-  it('renders a hero component', () => {
+  it("renders a hero component", () => {
     const store = mockStore({
       intl: {
-        locale: 'en',
+        locale: "en",
         messages: {},
       },
     });
@@ -205,9 +205,9 @@ describe('Hero block', () => {
           </Hero.Text>
           <Hero.Meta styles={undefined}>Test meta</Hero.Meta>
         </Hero>
-      </Provider>,
+      </Provider>
     );
 
-    expect(container.querySelector('.quoted-wrapper')).toBeInTheDocument();
+    expect(container.querySelector(".quoted-wrapper")).toBeInTheDocument();
   });
 });

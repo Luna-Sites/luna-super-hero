@@ -7,7 +7,7 @@ Copyright.propTypes = {
 
 function Copyright({ children, ...rest }) {
   return (
-    <div className={`eea copyright ${rest.copyrightPosition}`}>
+    <div className={`copyright ${rest.copyrightPosition}`}>
       <div className={'wrapper'}>{children}</div>
     </div>
   );

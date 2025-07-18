@@ -1,11 +1,11 @@
 {
-  "name": "volto-super-hero",
-  "version": "7.1.0",
-  "description": "volto-super-hero: Volto add-on",
+  "name": "luna-super-hero",
+  "version": "8.0.0",
+  "description": "luna-super-hero: Volto add-on",
   "main": "src/index.js",
-  "author": "European Environment Agency: IDM2 A-Team",
+  "author": "Your Name",
   "license": "MIT",
-  "homepage": "https://github.com/eea/volto-hero-block",
+  "homepage": "https://github.com/luna-sites/luna-super-hero",
   "keywords": [
     "volto-addon",
     "volto",
@@ -14,19 +14,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:eea/volto-hero-block.git"
+    "url": "git@github.com:luna-sites/luna-super-hero.git"
   },
-  "addons": [
-    "@eeacms/volto-object-widget"
-  ],
+  "addons": [],
   "dependencies": {
-    "@eeacms/volto-object-widget": "*",
-    "@eeacms/volto-widget-theme-picker": "*",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "react-slick": "^0.30.3",
     "remixicon": "4.6.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "@eeacms/volto-object-widget": "*"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
@@ -79,5 +76,6 @@
     "cypress:run": "make cypress-run",
     "cypress:open": "make cypress-open",
     "prepare": "husky install"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -36,7 +36,7 @@ describe('Copyright', () => {
     expect(screen.getByText('Copyright Text Test')).toBeInTheDocument();
     expect(container.querySelector('i.copyright.outline')).toBeInTheDocument();
     expect(
-      container.querySelector('div.eea.copyright.left'),
+      container.querySelector('div.copyright.left'),
     ).toBeInTheDocument();
   });
 
@@ -56,7 +56,7 @@ describe('Copyright', () => {
     expect(screen.getByText('Copyright Text Test')).toBeInTheDocument();
     expect(container.querySelector('i.copyright.outline')).toBeInTheDocument();
     expect(
-      container.querySelector('div.eea.copyright.right'),
+      container.querySelector('div.copyright.right'),
     ).toBeInTheDocument();
   });
 });

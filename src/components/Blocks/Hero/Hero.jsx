@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Icon } from '@plone/volto/components';
-import volumeOff from '@plone/volto/icons/volume-off.svg';
-import volumeUp from '@plone/volto/icons/volume.svg';
-import { isInternalURL } from '@plone/volto/helpers/Url/Url';
-import { isImageGif, getFieldURL } from 'volto-super-hero/helpers';
-import { useFirstVisited } from 'volto-super-hero/hooks';
-import cx from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import { Icon } from "@plone/volto/components";
+import volumeOff from "@plone/volto/icons/volume-off.svg";
+import volumeUp from "@plone/volto/icons/volume.svg";
+import { isInternalURL } from "@plone/volto/helpers/Url/Url";
+import { isImageGif, getFieldURL } from "luna-super-hero/helpers";
+import { useFirstVisited } from "luna-super-hero/hooks";
+import cx from "classnames";
 
 Hero.propTypes = {
   image: PropTypes.any,
@@ -45,7 +45,7 @@ function Hero({
     }
   };
   const isExternal = !isInternalURL(image);
-  const { alignContent = 'center' } = styles || {};
+  const { alignContent = "center" } = styles || {};
   const bgImgRef = React.useRef();
   const onScreen = useFirstVisited(bgImgRef);
   const backgroundImageStyle = {
@@ -54,21 +54,21 @@ function Hero({
           backgroundImage: isExternal
             ? `url(${image})`
             : isImageGif(image)
-              ? `url(${image}/@@images/image)`
-              : `url(${image}/@@images/image/huge)`,
+            ? `url(${image}/@@images/image)`
+            : `url(${image}/@@images/image/huge)`,
         }
       : {}),
     background: backgroundColor,
   };
   return (
     <div
-      className={` eea hero-block ${fullHeight ? 'full-height' : ''}  ${
-        spaced ? 'spaced' : ''
+      className={`hero-block ${fullHeight ? "full-height" : ""}  ${
+        spaced ? "spaced" : ""
       }`}
     >
       <div
         className={`hero-block-image-wrapper ${
-          fullWidth ? 'full-width' : ''
+          fullWidth ? "full-width" : ""
         } color-bg-${backgroundColor}`}
       >
         <div
@@ -101,14 +101,14 @@ function Hero({
 }
 
 Hero.Text = ({ quoted, styles, children }) => {
-  const { textVariant = 'white', textAlign = 'left' } = styles || {};
+  const { textVariant = "white", textAlign = "left" } = styles || {};
   return (
     <div
       className={cx(
-        'hero-block-text',
+        "hero-block-text",
         `color-fg-${textVariant}`,
         `text-${textAlign}`,
-        quoted ? 'quoted-wrapper' : '',
+        quoted ? "quoted-wrapper" : ""
       )}
     >
       {children}

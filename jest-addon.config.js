@@ -22,9 +22,7 @@ module.exports = {
     "load-volto-addons":
       "<rootDir>/node_modules/@plone/volto/jest-addons-loader.js",
   },
-  transformIgnorePatterns: [
-    "/node_modules/(?!(@plone|@root|@package|@eeacms)/).*/",
-  ],
+  transformIgnorePatterns: ["/node_modules/(?!(@plone|@root|@package)/).*/"],
   transform: {
     "^.+\\.js(x)?$": "babel-jest",
     "^.+\\.ts(x)?$": "ts-jest",
@@ -42,7 +40,7 @@ module.exports = {
   },
   ...(process.env.JEST_USE_SETUP === "ON" && {
     setupFilesAfterEnv: [
-      "<rootDir>/node_modules/volto-super-hero/jest.setup.js",
+      "<rootDir>/node_modules/luna-super-hero/jest.setup.js",
     ],
   }),
 };

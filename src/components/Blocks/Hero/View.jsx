@@ -1,52 +1,52 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Message } from 'semantic-ui-react';
-import useEmblaCarousel from 'embla-carousel-react';
-import Autoplay from 'embla-carousel-autoplay';
-import { useMemo } from 'react';
-import cx from 'classnames';
-import { defineMessages, useIntl } from 'react-intl';
-import { Icon } from 'semantic-ui-react';
-import { UniversalLink, RenderBlocks } from '@plone/volto/components';
-import { BodyClass } from '@plone/volto/helpers';
-import { useLocation } from 'react-router-dom';
-import Hero from './Hero';
-import Copyright from './Copyright';
-import { serializeText, getFieldURL } from 'volto-super-hero/helpers';
-import config from '@plone/volto/registry';
-import './hero.less';
+import React, { useCallback, useEffect, useState } from "react";
+import { Message } from "semantic-ui-react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+import { useMemo } from "react";
+import cx from "classnames";
+import { defineMessages, useIntl } from "react-intl";
+import { Icon } from "semantic-ui-react";
+import { UniversalLink, RenderBlocks } from "@plone/volto/components";
+import { BodyClass } from "@plone/volto/helpers";
+import { useLocation } from "react-router-dom";
+import Hero from "./Hero";
+import Copyright from "./Copyright";
+import { serializeText, getFieldURL } from "luna-super-hero/helpers";
+import config from "@plone/volto/registry";
+import "./hero.less";
 
 const messages = defineMessages({
   PleaseChooseContent: {
-    id: 'Please choose an existing content as source for this element',
+    id: "Please choose an existing content as source for this element",
     defaultMessage:
-      'Please choose an existing content as source for this element',
+      "Please choose an existing content as source for this element",
   },
   previousButton: {
-    id: 'Previous slide',
-    defaultMessage: 'Previous slide',
+    id: "Previous slide",
+    defaultMessage: "Previous slide",
   },
   nextButton: {
-    id: 'Next slide',
-    defaultMessage: 'Next slide',
+    id: "Next slide",
+    defaultMessage: "Next slide",
   },
   goToSlide: {
-    id: 'Go to slide',
-    defaultMessage: 'Go to slide',
+    id: "Go to slide",
+    defaultMessage: "Go to slide",
   },
 });
 const Metadata = ({ buttonLabel, inverted, styles, ...props }) => {
   const buttonLink = getFieldURL(props.buttonLink);
-  const { buttonVariant = 'white' } = styles || {};
+  const { buttonVariant = "white" } = styles || {};
 
   return buttonLabel ? (
     <UniversalLink
-      className={cx('ui button', buttonVariant, { inverted })}
-      href={buttonLink || ''}
+      className={cx("ui button", buttonVariant, { inverted })}
+      href={buttonLink || ""}
     >
       {buttonLabel}
     </UniversalLink>
   ) : (
-    ''
+    ""
   );
 };
 
@@ -127,7 +127,7 @@ const View = (props) => {
     showArrows = true,
   } = data;
   const metadata = props.metadata || props.properties;
-  const copyrightPrefix = config.blocks.blocksConfig.hero.copyrightPrefix || '';
+  const copyrightPrefix = config.blocks.blocksConfig.hero.copyrightPrefix || "";
 
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
@@ -147,19 +147,19 @@ const View = (props) => {
               stopOnMouseEnter: true,
               stopOnLastSnap: false,
             },
-            (emblaRoot) => emblaRoot.parentElement,
+            (emblaRoot) => emblaRoot.parentElement
           )
         : null,
-    [autoplay, isEditMode, autoPlaySpeed],
+    [autoplay, isEditMode, autoPlaySpeed]
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: true,
-      align: 'start',
-      containScroll: 'trimSnaps',
+      align: "start",
+      containScroll: "trimSnaps",
     },
-    [autoplayInstance].filter(Boolean),
+    [autoplayInstance].filter(Boolean)
   );
 
   const scrollPrev = useCallback(() => {
@@ -183,7 +183,7 @@ const View = (props) => {
         setSlideIndex && setSlideIndex(index);
       }
     },
-    [emblaApi, setSlideIndex],
+    [emblaApi, setSlideIndex]
   );
 
   const onInit = useCallback((emblaApi) => {
@@ -201,9 +201,9 @@ const View = (props) => {
 
     onInit(emblaApi);
     onSelect(emblaApi);
-    emblaApi.on('reInit', onInit);
-    emblaApi.on('reInit', onSelect);
-    emblaApi.on('select', onSelect);
+    emblaApi.on("reInit", onInit);
+    emblaApi.on("reInit", onSelect);
+    emblaApi.on("select", onSelect);
   }, [emblaApi, onInit, onSelect]);
 
   useEffect(() => {
@@ -227,7 +227,7 @@ const View = (props) => {
         {...data}
         image={data.image}
         video={data.video}
-        className={cx('hero-single', data.fullWidth ? 'has-full-width' : '')}
+        className={cx("hero-single", data.fullWidth ? "has-full-width" : "")}
       >
         <Hero.Text {...data.styles}>
           {data?.data ? (
@@ -252,7 +252,7 @@ const View = (props) => {
             <Copyright.Text>{copyright}</Copyright.Text>
           </Copyright>
         ) : (
-          ''
+          ""
         )}
       </Hero>
     </>
@@ -262,22 +262,22 @@ const View = (props) => {
   const renderCarouselHero = () => (
     <div
       className={cx(
-        'hero-carousel-edit-wrapper eea hero-block',
-        data.fullHeight ? 'full-height' : '',
-        data.spaced ? 'spaced' : '',
-        data.fullWidth ? 'has-full-width' : '',
+        "hero-carousel-edit-wrapper hero-block",
+        data.fullHeight ? "full-height" : "",
+        data.spaced ? "spaced" : "",
+        data.fullWidth ? "has-full-width" : ""
       )}
     >
       <BodyClass className="with-hero-block" />
       <div
         className={cx(
-          'block hero-slider eea hero-block',
-          data.fullHeight ? 'full-height' : '',
-          data.spaced ? 'spaced' : '',
-          data.fullWidth ? 'has-full-width' : '',
-          className,
+          "block hero-slider hero-block",
+          data.fullHeight ? "full-height" : "",
+          data.spaced ? "spaced" : "",
+          data.fullWidth ? "has-full-width" : "",
+          className
         )}
-        style={{ '--slider-container-width': `${sliderContainerWidth}px` }}
+        style={{ "--slider-container-width": `${sliderContainerWidth}px` }}
       >
         {(slides?.length === 0 || !slides) && isEditMode && (
           <Message>
@@ -335,8 +335,8 @@ const View = (props) => {
                         >
                           <Hero
                             {...slideData}
-                            className={cx('hero-slide-item', {
-                              'slide-visible': selectedIndex === index,
+                            className={cx("hero-slide-item", {
+                              "slide-visible": selectedIndex === index,
                             })}
                           >
                             <Hero.Text {...slideStyles}>
@@ -369,7 +369,7 @@ const View = (props) => {
                                 <Copyright.Text>{copyright}</Copyright.Text>
                               </Copyright>
                             ) : (
-                              ''
+                              ""
                             )}
                             {slides?.length > 1 && (
                               <div className="hero-slider-dots">
@@ -378,10 +378,10 @@ const View = (props) => {
                                     key={index}
                                     index={index}
                                     onClick={() => scrollTo(index)}
-                                    className={'hero-slider-dot'.concat(
+                                    className={"hero-slider-dot".concat(
                                       index === selectedIndex
-                                        ? ' hero-slider-dot--selected'
-                                        : '',
+                                        ? " hero-slider-dot--selected"
+                                        : ""
                                     )}
                                   />
                                 ))}

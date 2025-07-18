@@ -18,7 +18,7 @@
   color: @heroDeleteButtonColor !important;
 }
 
-.eea.hero-block {
+.hero-block {
   position: @heroBlockPosition;
 }
 
@@ -27,7 +27,7 @@
 --------------------------------------*/
 #page-document
   .blocks-group-wrapper
-  > .eea.hero-block:has(.hero-block-image-wrapper.full-width) {
+  > .hero-block:has(.hero-block-image-wrapper.full-width) {
   max-width: none !important;
   margin-right: 0 !important;
   margin-left: 0 !important;
@@ -36,19 +36,19 @@
 /* Fallback for browsers that don't support :has() */
 #page-document
   .blocks-group-wrapper
-  > .eea.hero-block
+  > .hero-block
   .hero-block-image-wrapper.full-width {
   /* This will be handled by the existing full-width styles */
 }
 
 /* Alternative approach using a specific class */
-#page-document .blocks-group-wrapper > .eea.hero-block.has-full-width {
+#page-document .blocks-group-wrapper > .hero-block.has-full-width {
   max-width: none !important;
   margin-right: 0 !important;
   margin-left: 0 !important;
 }
 
-.eea.hero-block.spaced {
+.hero-block.spaced {
   margin: @heroBlockSpacedMargin;
 }
 
@@ -129,7 +129,7 @@
   padding: @heroBlockHomePagePadding;
 }
 
-.homepage #page-document > .eea.hero-block:first-of-type .hero-block-body {
+.homepage #page-document > .hero-block:first-of-type .hero-block-body {
   margin: @heroBlockHomePageBodyMargin;
 }
 
@@ -140,9 +140,9 @@
 /*-------------------------------------
   Full-height Variant
 --------------------------------------*/
-.eea.hero-block.full-height,
-.eea.hero-block.full-height .hero-block-image-wrapper,
-.eea.hero-block.full-height .hero-block-inner-wrapper {
+.hero-block.full-height,
+.hero-block.full-height .hero-block-image-wrapper,
+.hero-block.full-height .hero-block-inner-wrapper {
   min-height: @mobileHeroBlockMinHeight;
 }
 
@@ -168,10 +168,10 @@
   }
 
   /* Ensure parent containers don't constrain full-width on mobile */
-  #page-document .blocks-group-wrapper > .eea.hero-block.has-full-width,
+  #page-document .blocks-group-wrapper > .hero-block.has-full-width,
   #page-document
     .blocks-group-wrapper
-    > .eea.hero-block:has(.hero-block-image-wrapper.full-width) {
+    > .hero-block:has(.hero-block-image-wrapper.full-width) {
     position: relative !important;
     max-width: none !important;
     margin-right: 0 !important;
@@ -189,11 +189,11 @@
   body.has-toolbar
     #page-document
     .blocks-group-wrapper
-    > .eea.hero-block.has-full-width,
+    > .hero-block.has-full-width,
   body.has-toolbar
     #page-document
     .blocks-group-wrapper
-    > .eea.hero-block:has(.hero-block-image-wrapper.full-width) {
+    > .hero-block:has(.hero-block-image-wrapper.full-width) {
     --toolbar-width: 0px !important;
   }
 
@@ -229,9 +229,9 @@
   Media Queries - Tablet
 --------------------------------------*/
 @media only screen and (min-width: @tabletBreakpoint) {
-  .eea.hero-block.full-height,
-  .eea.hero-block.full-height .hero-block-image-wrapper,
-  .eea.hero-block.full-height .hero-block-inner-wrapper {
+  .hero-block.full-height,
+  .hero-block.full-height .hero-block-image-wrapper,
+  .hero-block.full-height .hero-block-inner-wrapper {
     min-height: @tabletHeroBlockMinHeight;
   }
 
@@ -248,9 +248,9 @@
   Media Queries - Desktop
 --------------------------------------*/
 @media only screen and (min-width: @computerBreakpoint) {
-  .eea.hero-block.full-height,
-  .eea.hero-block.full-height .hero-block-image-wrapper,
-  .eea.hero-block.full-height .hero-block-inner-wrapper {
+  .hero-block.full-height,
+  .hero-block.full-height .hero-block-image-wrapper,
+  .hero-block.full-height .hero-block-inner-wrapper {
     min-height: @desktopHeroBlockMinHeight;
   }
 
@@ -262,7 +262,7 @@
     gap: @desktopHeroBlockBodyGap;
   }
 
-  .hero-block-body .eea.copyright {
+  .hero-block-body .copyright {
     bottom: @desktopCopyrightBottom;
   }
 }
@@ -271,9 +271,9 @@
   Print Styles
 --------------------------------------*/
 @media print {
-  .eea.hero-block.full-height,
-  .eea.hero-block.full-height .hero-block-image-wrapper,
-  .eea.hero-block.full-height .hero-block-inner-wrapper {
+  .hero-block.full-height,
+  .hero-block.full-height .hero-block-image-wrapper,
+  .hero-block.full-height .hero-block-inner-wrapper {
     min-height: unset;
   }
 
@@ -297,7 +297,7 @@
     break-inside: avoid-page;
   }
 
-  .hero-block-body .eea.copyright {
+  .hero-block-body .copyright {
     display: none;
     visibility: hidden;
   }
@@ -306,12 +306,12 @@
 /*-------------------------------------
   Copyright Block
 --------------------------------------*/
-.hero-block-body .eea.copyright {
+.hero-block-body .copyright {
   position: absolute;
   bottom: @mobileCopyrightBottom;
 }
 
-.eea.copyright {
+.copyright {
   width: @copyrightWidth;
 
   .wrapper {
